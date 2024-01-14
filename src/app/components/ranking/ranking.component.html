@@ -1,1 +1,58 @@
-<p>ranking works!</p>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-3 d-flex justify-content-center">
+            <button class="btn btn-success">Create Player</button>
+        </div>
+        <div class="col-3 d-flex justify-content-center">
+            <button class="btn btn-primary" (click)="getPlayers()">Search Player</button>
+        </div>
+        <div class="col-3 d-flex justify-content-center">
+            <button class="btn btn-danger">Delete Player</button>
+        </div>
+        <div class="col-3 d-flex justify-content-center">
+            <button class="btn btn-info">Edit Player</button>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="mb-4 text-center">
+            <h2>Create, search, edit or delete a player</h2>
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <input
+              type="text"
+              class="form-control mr-3 mb-2"
+              placeholder="Search for a player"
+            >
+            <button class="btn btn-primary mb-2" (click)="getPlayers()">Search</button>
+          </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Mobile Phone</th>
+          <th scope="col">Email</th>
+          <th scope="col">Name</th>
+          <th scope="col">Ranking</th>
+          <th scope="col">Ranking Position</th>
+          <th scope="col">URL Picture</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let player of players">
+          <th scope="row">{{ player._id }}</th>
+          <td>{{ player.mobilePhone }}</td>
+          <td>{{ player.email }}</td>
+          <td>{{ player.name }}</td>
+          <td>{{ player.ranking }}</td>
+          <td>{{ player.rankingPosition }}</td>
+          <td>{{ player.urlPlayerPicture }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

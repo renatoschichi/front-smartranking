@@ -8,6 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RankingComponent } from './components/ranking/ranking.component';
 import { FavoritePlayersComponent } from './components/favorite-players/favorite-players.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AboutusComponent } from './components/aboutus/aboutus.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { AppRoutingModule } from './app-routing.module';
     NavbarComponent,
     FooterComponent,
     RankingComponent,
-    FavoritePlayersComponent
+    FavoritePlayersComponent,
+    AboutusComponent
   ],
   imports: [
     BrowserModule,
