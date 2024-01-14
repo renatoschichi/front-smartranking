@@ -4,7 +4,8 @@ export interface Player {
     email: string;
     name: string;
     ranking: string;
-    urlPlayerPicture: string;
+    sport: string;
+    team: string;
 }
   
 export interface CreatePlayerDto {

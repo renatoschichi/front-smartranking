@@ -2,41 +2,50 @@
   <h1 class="text-center">Smart Ranking</h1>  
   <form [formGroup]="playerForm" (ngSubmit)="onSubmit()">
     <div class="row mt-5">
-      <div class="col-12 col-sm-6">
+      <div class="col-12 col-sm-4 mb-2">
         <div class="form-group">
           <label for="mobilePhone">Mobile Phone</label>
-          <input type="text" class="form-control mr-3 mb-2" name="mobilePhone" formControlName="mobilePhone" mask="(00) 00000-0000">
+          <input type="text" class="form-control" name="mobilePhone" formControlName="mobilePhone" mask="(00) 00000-0000">
         </div>
       </div>
-      <div class="col-12 col-sm-6">
+      <div class="col-12 col-sm-4">
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" class="form-control mr-3 mb-2" name="email" formControlName="email">
+          <input type="email" class="form-control" name="email" formControlName="email">
+        </div>
+      </div>
+      <div class="col-12 col-sm-4">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" name="name" formControlName="name">
         </div>
       </div>
     </div>
     <div class="row mt-2">
       <div class="col-12 col-sm-5">
         <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" class="form-control mr-3 mb-2" name="name" formControlName="name">
+          <label for="ranking">Ranking</label>
+          <input type="text" class="form-control" name="ranking" formControlName="ranking" mask="00">
         </div>
       </div>
       <div class="col-12 col-sm-2">
         <div class="form-group">
-          <label for="ranking">Ranking</label>
-          <input type="text" class="form-control mr-3 mb-2" name="ranking" formControlName="ranking" mask="00">
+          <label for="sport">Sport</label>
+          <input type="text" class="form-control" name="sport" formControlName="sport">
         </div>
       </div>
       <div class="col-12 col-sm-5">
         <div class="form-group">
-          <label for="urlPlayerPicture">URL Picture</label>
-          <input type="text" class="form-control mr-3 mb-2" name="urlPlayerPicture" formControlName="urlPlayerPicture">
+          <label for="team">Team</label>
+          <input type="text" class="form-control" name="team" formControlName="team">
         </div>
       </div>
     </div>
-    <div class="d-flex flex-row-reverse">
-      <button type="submit" class="btn btn-success mb-2">Create player</button>
+    <div class="row mt-3">
+      <div class="col-12 d-flex justify-content-end">
+        <button type="text" class="btn btn-light" (click)="playerForm.reset()">Clear</button>
+        <button type="submit" class="btn btn-success btn-create-player">Create player</button>
+      </div>
     </div>
     <div class="row mt-5">
       <div class="d-flex justify-content-between align-items-center">
@@ -44,15 +53,15 @@
           type="text"
           class="form-control mr-3 mb-2"
           placeholder="Search for a player"
+          (change)="filterRanking()"
         >
-        <button type="button" class="btn btn-primary mb-2">Search</button>
       </div>
     </div>
   </form>
 
 </div>
 
-<div class="container mt-5 smart-ranking-table">
+<div class="container mt-2 smart-ranking-table">
   <table class="table">
     <thead>
       <tr>
@@ -61,7 +70,8 @@
         <th scope="col">Email</th>
         <th scope="col">Name</th>
         <th scope="col">Ranking</th>
-        <th scope="col">URL Picture</th>
+        <th scope="col">Sport</th>
+        <th scope="col">Team</th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -72,7 +82,8 @@
         <td>{{ player.email }}</td>
         <td>{{ player.name }}</td>
         <td>{{ player.ranking }}</td>
-        <td>{{ player.urlPlayerPicture }}</td>
+        <td>{{ player.sport }}</td>
+        <td>{{ player.team }}</td>
         <td (click)="toggleFavorite()">
           <div class="d-flex">
             <ng-container *ngIf="isFavorite; else favorite">

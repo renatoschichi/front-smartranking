@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Player } from 'src/app/models/player';
 import { PlayersService } from 'src/app/services/players/players.service';
 
@@ -19,15 +19,20 @@ export class RankingComponent implements OnInit {
   ) {
     this.playerForm = this.fb.group({
       mobilePhone: [null],
-      email: [null],
+      email: [null, Validators.required],
       name: [null],
       ranking: [null],
-      urlPlayerPicture: [null]
+      sport: [null],
+      team: [null]
     })
   }
 
   ngOnInit(): void {
     this.getPlayers();
+  }
+
+  filterRanking() {
+
   }
 
   toggleFavorite() {
