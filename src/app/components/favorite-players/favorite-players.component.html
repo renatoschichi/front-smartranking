@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container smart-ranking-table mt-5">
     <h2 class="text-center">Your favorite players</h2>
     <table class="table">
       <thead>
@@ -10,6 +10,7 @@
           <th scope="col">Ranking</th>
           <th scope="col">Ranking Position</th>
           <th scope="col">URL Picture</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -20,7 +21,15 @@
           <td>Name</td>
           <td>5</td>
           <td>13</td>
-          <td><img src="https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Basketball" width="50" height="50"></td>
+          <td>https://example.com/john.jpg</td>
+          <td (click)="toggleFavorite()">
+            <ng-container *ngIf="isFavorite; else favorite">
+              <i class="bi bi-heart"></i>
+            </ng-container>
+            <ng-template #favorite>
+              <i class="bi bi-heart-fill"></i>
+            </ng-template>
+          </td> 
         </tr>
       </tbody>
     </table>

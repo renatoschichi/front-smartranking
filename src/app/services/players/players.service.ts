@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError } from 'rxjs';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Player } from 'src/app/models/player';
 
 @Injectable({
@@ -13,8 +13,8 @@ export class PlayersService {
 
   constructor(private http: HttpClient) {}
 
-  createPlayer(): Observable<Player> {
-    return this.http.post<Player>(this.baseUrl, '/players').pipe(
+  createPlayer(player: Player): Observable<Player> {
+    return this.http.post<Player>(`${this.baseUrl}/players`, player).pipe(
       catchError((error) => {
         console.error('Error creating player', error);
         return throwError(error);

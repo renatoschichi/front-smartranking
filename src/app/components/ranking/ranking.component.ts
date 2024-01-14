@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Player } from 'src/app/models/player';
 import { PlayersService } from 'src/app/services/players/players.service';
 
@@ -8,22 +9,44 @@ import { PlayersService } from 'src/app/services/players/players.service';
   styleUrls: ['./ranking.component.scss']
 })
 export class RankingComponent implements OnInit {
-  players = [
-    { _id: '1', mobilePhone: '123456789', email: 'john@example.com', name: 'John Doe', ranking: 'A', rankingPosition: 1, urlPlayerPicture: 'https://example.com/john.jpg' }
-  ];
+  playerForm: FormGroup;
+  players: Player[] = [];
+  isFavorite: boolean = false;
 
   constructor(
-    private playersService: PlayersService
-  ) {}
+    private playersService: PlayersService,
+    private fb: FormBuilder
+  ) {
+    this.playerForm = this.fb.group({
+      mobilePhone: [null],
+      email: [null],
+      name: [null],
+      ranking: [null],
+      urlPlayerPicture: [null]
+    })
+  }
 
   ngOnInit(): void {
     this.getPlayers();
   }
 
+  toggleFavorite() {
+    this.isFavorite = !this.isFavorite;
+  }
+
   getPlayers(): void {
     this.playersService.getAllPlayers().subscribe((response: Player[]) => {
-      response = response.filter(p => p.name);
-      console.log(response)
+      this.players = response;
     })
+  }
+
+  onSubmit(): void {
+    if (this.playerForm.valid) {
+      this.playersService.createPlayer(this.playerForm.value).subscribe(player => {
+        this.getPlayers();
+      })
+    } else {
+      this.playerForm.markAllAsTouched();
+    }
   }
 }

@@ -4,7 +4,6 @@ export interface Player {
     email: string;
     name: string;
     ranking: string;
-    rankingPosition: number;
     urlPlayerPicture: string;
 }
   

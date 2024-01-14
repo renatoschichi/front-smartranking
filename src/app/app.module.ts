@@ -9,6 +9,8 @@ import { RankingComponent } from './components/ranking/ranking.component';
 import { FavoritePlayersComponent } from './components/favorite-players/favorite-players.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,12 @@ import { AboutusComponent } from './components/aboutus/aboutus.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    NgxMaskDirective,
+    NgxMaskPipe
   ],
-  providers: [],
+  providers: [provideNgxMask()],
   bootstrap: [AppComponent]
 })
 
