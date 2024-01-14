@@ -4,34 +4,43 @@
     <div class="row mt-5">
       <div class="col-12 col-sm-4 mb-2">
         <div class="form-group">
+          <label for="name">Name *</label>
+          <input required type="text" class="form-control" name="name" formControlName="name">
+        </div>
+      </div>
+      <div class="col-12 col-sm-4">
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input required type="email" class="form-control" name="email" formControlName="email">
+        </div>
+      </div>
+      <div class="col-12 col-sm-4">
+        <div class="form-group">
           <label for="mobilePhone">Mobile Phone</label>
           <input type="text" class="form-control" name="mobilePhone" formControlName="mobilePhone" mask="(00) 00000-0000">
         </div>
       </div>
-      <div class="col-12 col-sm-4">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" name="email" formControlName="email">
-        </div>
-      </div>
-      <div class="col-12 col-sm-4">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" class="form-control" name="name" formControlName="name">
-        </div>
-      </div>
     </div>
     <div class="row mt-2">
-      <div class="col-12 col-sm-5">
-        <div class="form-group">
-          <label for="ranking">Ranking</label>
-          <input type="text" class="form-control" name="ranking" formControlName="ranking" mask="00">
-        </div>
-      </div>
       <div class="col-12 col-sm-2">
         <div class="form-group">
-          <label for="sport">Sport</label>
-          <input type="text" class="form-control" name="sport" formControlName="sport">
+          <label for="ranking">Ranking *</label>
+          <input required type="text" class="form-control" name="ranking" formControlName="ranking" mask="00">
+        </div>
+      </div>
+      <div class="col-12 col-sm-5">
+        <div class="form-group">
+          <label for="sport">Sport *</label>
+          <select
+            required
+            class="form-control"
+            id="sport"
+            name="sport"
+            formControlName="sport"
+          >
+            <option value="" disabled selected>Select a sport</option>
+            <option *ngFor="let sport of sports" [value]="sport.id">{{sport.name}}</option>
+          </select>
         </div>
       </div>
       <div class="col-12 col-sm-5">
@@ -44,7 +53,7 @@
     <div class="row mt-3">
       <div class="col-12 d-flex justify-content-end">
         <button type="text" class="btn btn-light" (click)="playerForm.reset()">Clear</button>
-        <button type="submit" class="btn btn-success btn-create-player">Create player</button>
+        <button type="submit" class="btn btn-success btn-create-player" [disabled]="!playerForm.valid">Create player</button>
       </div>
     </div>
     <div class="row mt-5">
@@ -66,9 +75,9 @@
     <thead>
       <tr>
         <th scope="col">ID</th>
-        <th scope="col">Mobile Phone</th>
-        <th scope="col">Email</th>
         <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Mobile Phone</th>
         <th scope="col">Ranking</th>
         <th scope="col">Sport</th>
         <th scope="col">Team</th>
@@ -78,9 +87,9 @@
     <tbody>
       <tr *ngFor="let player of players">
         <th scope="row">{{ player._id }}</th>
-        <td>{{ player.mobilePhone }}</td>
-        <td>{{ player.email }}</td>
         <td>{{ player.name }}</td>
+        <td>{{ player.email }}</td>
+        <td>{{ player.mobilePhone }}</td>
         <td>{{ player.ranking }}</td>
         <td>{{ player.sport }}</td>
         <td>{{ player.team }}</td>

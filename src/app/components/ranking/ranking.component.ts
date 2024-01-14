@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Player } from 'src/app/models/player';
+import { Sports } from 'src/app/models/sports';
 import { PlayersService } from 'src/app/services/players/players.service';
+import { SportsService } from 'src/app/services/sports/sports.service';
 
 @Component({
   selector: 'app-ranking',
@@ -12,23 +14,32 @@ export class RankingComponent implements OnInit {
   playerForm: FormGroup;
   players: Player[] = [];
   isFavorite: boolean = false;
+  sports: Sports[] = [];
 
   constructor(
     private playersService: PlayersService,
+    private sportsService: SportsService,
     private fb: FormBuilder
   ) {
     this.playerForm = this.fb.group({
-      mobilePhone: [null],
+      name: [null, Validators.required],
       email: [null, Validators.required],
-      name: [null],
-      ranking: [null],
-      sport: [null],
+      mobilePhone: [null],
+      ranking: [null, Validators.required],
+      sport: [null, Validators.required],
       team: [null]
     })
   }
 
   ngOnInit(): void {
+    this.loadSports();
     this.getPlayers();
+  }
+
+  loadSports(): void {
+    this.sportsService.getAllSports().subscribe((response: any) => {
+      this.sports = response;
+    });
   }
 
   filterRanking() {
