@@ -1,15 +1,11 @@
+import { Sports } from "./sports";
+
 export interface Player {
     _id: string;
     mobilePhone: string;
     email: string;
     name: string;
-    ranking: string;
-    sport: string;
+    ranking: number;
+    sport: Sports;
     team: string;
-}
-  
-export interface CreatePlayerDto {
-    mobilePhone: string;
-    email: string;
-    name: string;
 }

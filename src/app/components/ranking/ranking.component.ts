@@ -26,7 +26,10 @@ export class RankingComponent implements OnInit {
       email: [null, Validators.required],
       mobilePhone: [null],
       ranking: [null, Validators.required],
-      sport: [null, Validators.required],
+      sport: this.fb.group({
+        id: [null],
+        name: [null]
+      }),
       team: [null]
     })
   }
@@ -59,6 +62,7 @@ export class RankingComponent implements OnInit {
   onSubmit(): void {
     if (this.playerForm.valid) {
       this.playersService.createPlayer(this.playerForm.value).subscribe(player => {
+        this.playerForm.reset();
         this.getPlayers();
       })
     } else {

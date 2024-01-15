@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { RankingDirective } from './directives/ranking.directive';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     FooterComponent,
     RankingComponent,
     FavoritePlayersComponent,
-    AboutusComponent
+    AboutusComponent,
+    RankingDirective
   ],
   imports: [
     BrowserModule,

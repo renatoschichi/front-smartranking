@@ -1,20 +1,20 @@
-<div class="container mt-5">
+<div class="container ranking-container mt-5">
   <h1 class="text-center">Smart Ranking</h1>  
   <form [formGroup]="playerForm" (ngSubmit)="onSubmit()">
     <div class="row mt-5">
-      <div class="col-12 col-sm-4 mb-2">
+      <div class="col-12 col-md-4 mb-2">
         <div class="form-group">
           <label for="name">Name *</label>
           <input required type="text" class="form-control" name="name" formControlName="name">
         </div>
       </div>
-      <div class="col-12 col-sm-4">
+      <div class="col-12 col-md-4">
         <div class="form-group">
           <label for="email">Email *</label>
           <input required type="email" class="form-control" name="email" formControlName="email">
         </div>
       </div>
-      <div class="col-12 col-sm-4">
+      <div class="col-12 col-md-4">
         <div class="form-group">
           <label for="mobilePhone">Mobile Phone</label>
           <input type="text" class="form-control" name="mobilePhone" formControlName="mobilePhone" mask="(00) 00000-0000">
@@ -22,13 +22,13 @@
       </div>
     </div>
     <div class="row mt-2">
-      <div class="col-12 col-sm-2">
+      <div class="col-12 col-md-2">
         <div class="form-group">
           <label for="ranking">Ranking *</label>
-          <input required type="text" class="form-control" name="ranking" formControlName="ranking" mask="00">
+          <input required type="text" class="form-control" name="ranking" formControlName="ranking" rankingDirective>
         </div>
       </div>
-      <div class="col-12 col-sm-5">
+      <div class="col-12 col-md-5">
         <div class="form-group">
           <label for="sport">Sport *</label>
           <select
@@ -43,7 +43,7 @@
           </select>
         </div>
       </div>
-      <div class="col-12 col-sm-5">
+      <div class="col-12 col-md-5">
         <div class="form-group">
           <label for="team">Team</label>
           <input type="text" class="form-control" name="team" formControlName="team">
@@ -68,44 +68,43 @@
     </div>
   </form>
 
-</div>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Mobile Phone</th>
+          <th scope="col">Ranking</th>
+          <th scope="col">Sport</th>
+          <th scope="col">Team</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let player of players">
+          <th scope="row">{{ player._id }}</th>
+          <td>{{ player.name }}</td>
+          <td>{{ player.email }}</td>
+          <td>{{ player.mobilePhone }}</td>
+          <td>{{ player.ranking }}</td>
+          <td>{{ player.sport.name }}</td>
+          <td>{{ player.team }}</td>
+          <td (click)="toggleFavorite()">
+            <div class="d-flex">
+              <ng-container *ngIf="isFavorite; else favorite">
+                <i class="bi bi-heart"></i>
+              </ng-container>
+              <ng-template #favorite>
+                <i class="bi bi-heart-fill sr-icon"></i>
+              </ng-template>
+              <i class="bi bi-trash sr-icon"></i>
+            </div>
+          </td> 
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<div class="container mt-2 smart-ranking-table">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Mobile Phone</th>
-        <th scope="col">Ranking</th>
-        <th scope="col">Sport</th>
-        <th scope="col">Team</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let player of players">
-        <th scope="row">{{ player._id }}</th>
-        <td>{{ player.name }}</td>
-        <td>{{ player.email }}</td>
-        <td>{{ player.mobilePhone }}</td>
-        <td>{{ player.ranking }}</td>
-        <td>{{ player.sport }}</td>
-        <td>{{ player.team }}</td>
-        <td (click)="toggleFavorite()">
-          <div class="d-flex">
-            <ng-container *ngIf="isFavorite; else favorite">
-              <i class="bi bi-heart"></i>
-            </ng-container>
-            <ng-template #favorite>
-              <i class="bi bi-heart-fill sr-icon"></i>
-            </ng-template>
-            <i class="bi bi-pencil-square sr-icon"></i>
-            <i class="bi bi-trash sr-icon"></i>
-          </div>
-        </td> 
-      </tr>
-    </tbody>
-  </table>
 </div>
