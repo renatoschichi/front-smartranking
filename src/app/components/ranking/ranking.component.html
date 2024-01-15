@@ -30,16 +30,15 @@
       </div>
       <div class="col-12 col-md-5">
         <div class="form-group">
-          <label for="sport">Sport *</label>
+          <label for="sport">Sport</label>
           <select
-            required
             class="form-control"
             id="sport"
             name="sport"
             formControlName="sport"
           >
             <option value="" disabled selected>Select a sport</option>
-            <option *ngFor="let sport of sports" [value]="sport.id">{{sport.name}}</option>
+            <option *ngFor="let sport of sports" [value]="sport.name">{{sport.name}}</option>
           </select>
         </div>
       </div>
@@ -56,7 +55,7 @@
         <button type="submit" class="btn btn-success btn-create-player" [disabled]="!playerForm.valid">Create player</button>
       </div>
     </div>
-    <div class="row mt-5">
+    <!-- <div class="row mt-5">
       <div class="d-flex justify-content-between align-items-center">
         <input
           type="text"
@@ -65,10 +64,10 @@
           (change)="filterRanking()"
         >
       </div>
-    </div>
+    </div> -->
   </form>
 
-  <div class="table-responsive">
+  <div class="table-responsive mt-5">
     <table class="table">
       <thead>
         <tr>
